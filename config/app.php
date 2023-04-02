@@ -58,6 +58,9 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'write_docs_from_tests' => (bool)env('WRITE_DOCS_FROM_TESTS', false),
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

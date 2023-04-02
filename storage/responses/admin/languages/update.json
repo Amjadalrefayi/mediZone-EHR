@@ -1,0 +1,9 @@
+{
+    "data": {
+        "id": 11111140,
+        "name": "TESTER",
+        "code": "ar"
+    },
+    "message": "Language's information updated successfully",
+    "status_code": 200
+}
