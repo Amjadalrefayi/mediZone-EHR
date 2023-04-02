@@ -17,7 +17,7 @@ abstract class V1TestCase extends TestCase
         parent::setUp();
         // set your headers here
         $this->withHeaders([
-            'App-Secret' => config('mediZone.auth.v1.web.secret'),
+            'App-Secret' => config('medizone.auth.v1.web.secret'),
             'Platform' => 'web',
         ]);
     }

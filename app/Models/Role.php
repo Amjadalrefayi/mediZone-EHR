@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-/**
- * @mixin IdeHelperRole
- */
 class Role extends \Spatie\Permission\Models\Role
 {
     use HasFactory, SoftDeletes, LogsActivity;

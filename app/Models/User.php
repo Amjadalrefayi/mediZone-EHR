@@ -2,24 +2,37 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, HasRoles, Notifiable, HasApiTokens, SoftDeletes, LogsActivity;
 
+    protected string $guard_name = 'api';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'id_number',
         'name',
-        'email',
+        'family',
+        'prefix',
+        'suffix',
+        'marital_status',
+        'gender',
+        'type',
+        'photo',
+        'deceased',
         'password',
     ];
 
@@ -39,6 +52,17 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'birth_date' => 'datetime',
+        'deceased_date' => 'datetime',
     ];
+
+    public function languages(): BelongsToMany
+    {
+        return $this->belongsToMany(Language::class, 'user_languages')->withPivot('preferred');
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
+    }
 }

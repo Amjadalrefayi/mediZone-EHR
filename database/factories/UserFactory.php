@@ -2,11 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Enums\GenderEnum;
+use App\Enums\MaritalStatus;
+use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends Factory
  */
 class UserFactory extends Factory
 {
@@ -18,9 +21,17 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'id_number' => $this->faker->uuid,
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'family' => $this->faker->name,
+            'prefix' => $this->faker->name,
+            'suffix' => $this->faker->name,
+            'marital_status' => MaritalStatus::getRandomValue(),
+            'gender' => GenderEnum::getRandomValue(),
+            'type' => UserType::getRandomValue(),
+            'photo' => 'image.png',
+            'deceased' => false,
+            'birth_date' => $this->faker->dateTime,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];

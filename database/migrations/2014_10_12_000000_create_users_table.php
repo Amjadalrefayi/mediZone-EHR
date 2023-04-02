@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Enums\GenderEnum;
 return new class extends Migration
 {
     /**
@@ -13,12 +13,27 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            //auth credential
+            $table->string('id_number')->unique();
             $table->string('password');
+
+            //Specific column dataType
+            $table->humanName();
+
+            $table->dateTime('birth_date');
+            $table->unsignedTinyInteger('marital_status');
+            $table->unsignedTinyInteger('gender')->default(GenderEnum::UNKNOWN);
+            $table->string('photo');
+
+            //deceased
+            $table->boolean('deceased')->default(false);
+            $table->dateTime('deceased_date')->nullable();
+
+            $table->unsignedTinyInteger('type');
+
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
