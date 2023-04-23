@@ -26,5 +26,7 @@ class AppServiceProvider extends ServiceProvider
             $this->string('prefix');
             $this->string('suffix');
         });
+
+
     }
 }

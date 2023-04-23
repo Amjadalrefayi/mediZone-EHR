@@ -59,6 +59,18 @@ final class PermissionType extends Enum
 
     const STORE_USER_LANGUAGE = 'STORE_USER_LANGUAGE';
 
+    const STORE_ORGANIZATION = 'STORE_ORGANIZATION';
+
+    const SHOW_ORGANIZATION = 'SHOW_ORGANIZATION';
+
+    const UPDATE_ORGANIZATION = 'UPDATE_ORGANIZATION';
+
+    const DELETE_ORGANIZATION = 'DELETE_ORGANIZATION';
+
+    const STORE_ORGANIZATION_TYPE = 'STORE_ORGANIZATION_TYPE';
+
+
+
     public static function getDescription($value): string
     {
         return Str::headline($value);

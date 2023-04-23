@@ -58,8 +58,9 @@ class User extends Authenticatable
 
     public function languages(): BelongsToMany
     {
-        return $this->belongsToMany(Language::class, 'user_languages')->withPivot('preferred');
+        return $this->belongsToMany(Code::class, 'user_languages')->withPivot('preferred');
     }
+
 
     public function getActivitylogOptions(): LogOptions
     {

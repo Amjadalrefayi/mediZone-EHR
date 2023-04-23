@@ -32,7 +32,7 @@ class UserLanguages extends Model
      */
     public function language(): BelongsTo
     {
-        return $this->belongsTo(Language::class);
+        return $this->belongsTo(Code::class);
     }
     public function getActivitylogOptions(): LogOptions
     {
